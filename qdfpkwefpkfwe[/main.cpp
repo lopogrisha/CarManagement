@@ -32,7 +32,22 @@ vector<Staff> staffList;
 vector<Vehicle> vehicleList;
 vector<Transaction> transactionList;
 
+void saveToFile() {
+    ofstream f("data.txt");
+    f << staffList.size() << endl;
+    for (auto& s : staffList)
+        f << s.fullName << "|" << s.jobTitle << "|" << s.contactNumber << "|" << s.emailAddress << endl;
 
+    f << vehicleList.size() << endl;
+    for (auto& v : vehicleList)
+        f << v.brand << "|" << v.modelName << "|" << v.manufactureYear << "|" << v.costPrice << "|" << v.salePrice << endl;
+
+    f << transactionList.size() << endl;
+    for (auto& t : transactionList)
+        f << t.staffId << "|" << t.vehicleId << "|" << t.saleDate << "|" << t.finalPrice << endl;
+    f.close();
+    cout << "Data saved.\n"; system("pause");
+}
 
 void addStaff() {
     Staff s;

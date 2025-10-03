@@ -179,6 +179,27 @@ void transactionsByStaff() {
             cout << "VehicleID:" << t.vehicleId << " Date:" << t.saleDate
             << " Price:" << t.finalPrice << endl;
 }
+void bestCarByPeriod() {
+    string start, end;
+    cout << "Start date (YYYY-MM-DD): "; getline(cin, start);
+    cout << "End date (YYYY-MM-DD): "; getline(cin, end);
+
+    map<int, int> count;
+    for (auto& t : transactionList)
+        if (t.saleDate >= start && t.saleDate <= end)
+            count[t.vehicleId]++;
+
+    int maxId = -1, maxCount = 0;
+    for (auto& p : count)
+        if (p.second > maxCount) {
+            maxCount = p.second;
+            maxId = p.first;
+        }
+
+    if (maxId != -1)
+        cout << "Most sold: " << vehicleList[maxId].brand << " " << vehicleList[maxId].modelName << endl;
+    else cout << "No sales.\n";
+}
 
 int main() {
     vector<string> menuItems = {

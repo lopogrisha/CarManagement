@@ -237,28 +237,32 @@ void totalProfitByPeriod() {
 }
 
 int main() {
-    vector<string> menuItems = {
+    loadFromFile();
+
+    vector<string> menu = {
         "Add Staff","Delete Staff","Add Vehicle","Delete Vehicle",
         "Add Transaction","Delete Transaction","List Staff","List Vehicles",
         "List Transactions","Transactions by Date","Transactions by Period",
-        "Transactions by Staff","Quit"
+        "Transactions by Staff","Best Car by Period","Best Staff by Period",
+        "Total Profit by Period","Save Data","Quit"
     };
     int selected = 0;
 
     while (true) {
         system("cls");
         cout << "Car Sales Management\n\n";
-        for (int i = 0; i < menuItems.size(); i++) {
+        for (int i = 0; i < menu.size(); i++) {
             if (i == selected) cout << ">> "; else cout << "   ";
-            cout << menuItems[i] << endl;
+            cout << menu[i] << endl;
         }
         int key = _getch();
         if (key == 224) {
             key = _getch();
             if (key == 72 && selected > 0) selected--;
-            else if (key == 80 && selected < menuItems.size() - 1) selected++;
+            else if (key == 80 && selected < menu.size() - 1) selected++;
         }
         else if (key == 13) {
+            system("cls");
             switch (selected) {
             case 0: addStaff(); break;
             case 1: deleteStaff(); break;
@@ -272,7 +276,11 @@ int main() {
             case 9: transactionsByDate(); system("pause"); break;
             case 10: transactionsByPeriod(); system("pause"); break;
             case 11: transactionsByStaff(); system("pause"); break;
-            case 12: return 0;
+            case 12: bestCarByPeriod(); system("pause"); break;
+            case 13: bestStaffByPeriod(); system("pause"); break;
+            case 14: totalProfitByPeriod(); system("pause"); break;
+            case 15: saveToFile(); break;
+            case 16: saveToFile(); return 0;
             }
         }
     }

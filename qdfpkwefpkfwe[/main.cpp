@@ -223,6 +223,19 @@ void bestStaffByPeriod() {
     else cout << "No sales.\n";
 }
 
+void totalProfitByPeriod() {
+    string start, end;
+    cout << "Start date (YYYY-MM-DD): "; getline(cin, start);
+    cout << "End date (YYYY-MM-DD): "; getline(cin, end);
+
+    double total = 0;
+    for (auto& t : transactionList)
+        if (t.saleDate >= start && t.saleDate <= end)
+            total += t.finalPrice - vehicleList[t.vehicleId].costPrice;
+
+    cout << "Total profit: " << total << endl;
+}
+
 int main() {
     vector<string> menuItems = {
         "Add Staff","Delete Staff","Add Vehicle","Delete Vehicle",

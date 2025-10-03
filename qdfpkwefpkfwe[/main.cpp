@@ -49,6 +49,46 @@ void saveToFile() {
     cout << "Data saved.\n"; system("pause");
 }
 
+void loadFromFile() {
+    ifstream f("data.txt");
+    if (!f.is_open()) return;
+    staffList.clear(); vehicleList.clear(); transactionList.clear();
+
+    int n; string line;
+    f >> n; f.ignore();
+    for (int i = 0; i < n; i++) {
+        Staff s;
+        getline(f, s.fullName, '|');
+        getline(f, s.jobTitle, '|');
+        getline(f, s.contactNumber, '|');
+        getline(f, s.emailAddress);
+        staffList.push_back(s);
+    }
+
+    f >> n; f.ignore();
+    for (int i = 0; i < n; i++) {
+        Vehicle v;
+        getline(f, v.brand, '|');
+        getline(f, v.modelName, '|');
+        f >> v.manufactureYear; f.ignore();
+        f >> v.costPrice; f.ignore();
+        f >> v.salePrice; f.ignore();
+        vehicleList.push_back(v);
+    }
+
+    f >> n; f.ignore();
+    for (int i = 0; i < n; i++) {
+        Transaction t;
+        f >> t.staffId; f.ignore();
+        f >> t.vehicleId; f.ignore();
+        getline(f, t.saleDate, '|');
+        f >> t.finalPrice; f.ignore();
+        transactionList.push_back(t);
+    }
+    f.close();
+    cout << "Data loaded.\n"; system("pause");
+}
+
 void addStaff() {
     Staff s;
     cout << "Full Name: "; getline(cin, s.fullName);

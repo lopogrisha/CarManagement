@@ -201,6 +201,28 @@ void bestCarByPeriod() {
     else cout << "No sales.\n";
 }
 
+void bestStaffByPeriod() {
+    string start, end;
+    cout << "Start date (YYYY-MM-DD): "; getline(cin, start);
+    cout << "End date (YYYY-MM-DD): "; getline(cin, end);
+
+    map<int, double> profit;
+    for (auto& t : transactionList)
+        if (t.saleDate >= start && t.saleDate <= end)
+            profit[t.staffId] += t.finalPrice - vehicleList[t.vehicleId].costPrice;
+
+    int bestId = -1; double bestProfit = 0;
+    for (auto& p : profit)
+        if (p.second > bestProfit) {
+            bestProfit = p.second;
+            bestId = p.first;
+        }
+
+    if (bestId != -1)
+        cout << "Best seller: " << staffList[bestId].fullName << " (" << bestProfit << " profit)\n";
+    else cout << "No sales.\n";
+}
+
 int main() {
     vector<string> menuItems = {
         "Add Staff","Delete Staff","Add Vehicle","Delete Vehicle",

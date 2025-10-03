@@ -2,6 +2,8 @@
 #include <vector>
 #include <string>
 #include <conio.h>
+#include <fstream>
+#include <map>
 using namespace std;
 
 struct Staff {
@@ -29,6 +31,8 @@ struct Transaction {
 vector<Staff> staffList;
 vector<Vehicle> vehicleList;
 vector<Transaction> transactionList;
+
+
 
 void addStaff() {
     Staff s;

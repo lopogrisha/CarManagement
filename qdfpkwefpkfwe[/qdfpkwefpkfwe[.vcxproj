@@ -24,6 +24,7 @@
     <ProjectGuid>{b5462cbb-5742-41c7-8881-062b7d9d914c}</ProjectGuid>
     <RootNamespace>qdfpkwefpkfwe</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>CarManagement</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
